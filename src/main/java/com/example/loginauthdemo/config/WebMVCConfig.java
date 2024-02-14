@@ -25,12 +25,23 @@ public class WebMVCConfig implements WebMvcConfigurer
 	//		return engine;
 	//	}
 	//
+	//	@Override
+	//	public void addResourceHandlers(ResourceHandlerRegistry registry)
+	//	{
+	//		if (!registry.hasMappingForPattern("/assets/**"))
+	//		{
+	//			registry.addResourceHandler("/assets/**").addResourceLocations("classpath:/assets/");
+	//		}
+	//	}
+
+	private static final String[] CLASSPATH_RESOURCE_LOCATIONS = {
+					"classpath:/META-INF/resources/", "classpath:/resources/",
+					"classpath:/static/", "classpath:/public/" };
+
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry)
 	{
-		if (!registry.hasMappingForPattern("/assets/**"))
-		{
-			registry.addResourceHandler("/assets/**").addResourceLocations("classpath:/assets/");
-		}
+		registry.addResourceHandler("/**")
+						.addResourceLocations(CLASSPATH_RESOURCE_LOCATIONS);
 	}
 }
